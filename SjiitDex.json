@@ -1,0 +1,20 @@
+{
+  "sjiits": [
+    {
+      "id": "001",
+      "name": "First Dump",
+      "description": "The OG. The very first Sjiit ever printed. Classic brown mischief in miniature form.",
+      "rarity": "Common",
+      "season": "Launch",
+      "emoji": "💩"
+    },
+    {
+      "id": "002",
+      "name": "Moonshine Hex",
+      "description": "Halloween 2025 edition. Moonlit prank brewed for spooky season.",
+      "rarity": "Limited",
+      "season": "Halloween 2025",
+      "emoji": "🌕🎃"
+    }
+  ]
+}
