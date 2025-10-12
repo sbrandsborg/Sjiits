@@ -102,6 +102,72 @@
             background: var(--surface);
         }
 
+        .page-progress {
+            position: fixed;
+            top: 50%;
+            left: 1.25rem;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 0.65rem;
+            padding: 1rem;
+            border-radius: 18px;
+            background: rgba(6, 20, 26, 0.78);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 18px 45px rgba(0, 0, 0, 0.28);
+            z-index: 1000;
+        }
+
+        .page-progress ol {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .page-progress a {
+            color: var(--muted);
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.2s ease;
+            opacity: 0.7;
+        }
+
+        .page-progress a::before {
+            content: "";
+            width: 0.55rem;
+            height: 0.55rem;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            background: transparent;
+            transition: all 0.2s ease;
+        }
+
+        .page-progress a:hover,
+        .page-progress a:focus {
+            color: var(--accent);
+            opacity: 1;
+            text-decoration: none;
+        }
+
+        .page-progress a.active {
+            color: var(--accent);
+            opacity: 1;
+        }
+
+        .page-progress a.active::before {
+            background: var(--accent);
+            border-color: var(--accent);
+            box-shadow: 0 0 0 4px rgba(255, 204, 77, 0.2);
+        }
+
         h2 {
             font-size: clamp(2rem, 4vw, 2.75rem);
             margin: 0 0 1.25rem;
@@ -287,9 +353,24 @@
                 grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
             }
         }
+
+        @media (max-width: 960px) {
+            .page-progress {
+                display: none;
+            }
+        }
     </style>
 </head>
 <body>
+    <aside class="page-progress" aria-label="On-page navigation">
+        <ol>
+            <li><a href="#about">What is a Sjiit?</a></li>
+            <li><a href="#how-it-works">How it works</a></li>
+            <li><a href="#sjiitdex">Sjiitdex</a></li>
+            <li><a href="#creator">Meet the maker</a></li>
+            <li><a href="#faq">FAQ</a></li>
+        </ol>
+    </aside>
     <header>
         <div class="wrapper hero">
             <div>
@@ -440,6 +521,37 @@
 
     <script>
         document.getElementById('year').textContent = new Date().getFullYear();
+
+        const progressLinks = document.querySelectorAll('.page-progress a');
+        if (progressLinks.length) {
+            progressLinks[0].classList.add('active');
+        }
+
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                const id = entry.target.getAttribute('id');
+                const link = document.querySelector(`.page-progress a[href="#${id}"]`);
+
+                if (!link) {
+                    return;
+                }
+
+                if (entry.isIntersecting) {
+                    progressLinks.forEach((navLink) => {
+                        navLink.classList.remove('active');
+                    });
+                    link.classList.add('active');
+                }
+            });
+        }, {
+            root: null,
+            rootMargin: '-45% 0px -45% 0px',
+            threshold: 0
+        });
+
+        document.querySelectorAll('main section').forEach((section) => {
+            sectionObserver.observe(section);
+        });
     </script>
 </body>
 </html>
