@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sjiits | Tiny 3D printed pranks that spark stories</title>
+    <meta name="description" content="Discover Sjiits by Yding3DPrint: collectible 3D printed pranks with numbered card designs, limited editions, and a community that keeps the laughs going.">
+    <style>
+        :root {
+            --background: #0e2e38;
+            --surface: rgba(8, 24, 32, 0.82);
+            --text-color: #f7f4ef;
+            --muted: #c9d6d9;
+            --accent: #ffcc4d;
+            --accent-dark: #e4a129;
+            --card-bg: rgba(12, 45, 56, 0.92);
+            --max-width: 1100px;
+            font-size: 16px;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Inter", "Segoe UI", Roboto, sans-serif;
+            color: var(--text-color);
+            background: linear-gradient(145deg, #0b1f2a, #13505b 55%, #1c7b91);
+            line-height: 1.6;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        a:hover,
+        a:focus {
+            text-decoration: underline;
+        }
+
+        header {
+            background: linear-gradient(130deg, rgba(19, 80, 91, 0.92), rgba(44, 128, 142, 0.92));
+            color: var(--text-color);
+            padding: clamp(3rem, 7vw, 5.5rem) 1.5rem;
+        }
+
+        .wrapper {
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+
+        .hero {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 3.75rem);
+            margin: 0;
+        }
+
+        .hero p {
+            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+            margin: 0;
+        }
+
+        .cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.65rem;
+            background: var(--accent);
+            color: #1c2d2f;
+            border-radius: 999px;
+            padding: 0.85rem 1.6rem;
+            font-weight: 600;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+            transition: transform 0.2s ease;
+        }
+
+        .cta:hover,
+        .cta:focus {
+            transform: translateY(-3px);
+            text-decoration: none;
+        }
+
+        section {
+            padding: clamp(3rem, 6vw, 4.5rem) 1.5rem;
+            background: rgba(8, 28, 36, 0.82);
+            border-radius: 26px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            margin: clamp(1.5rem, 4vw, 2.75rem) auto;
+        }
+
+        section:nth-of-type(even) {
+            background: var(--surface);
+        }
+
+        h2 {
+            font-size: clamp(2rem, 4vw, 2.75rem);
+            margin: 0 0 1.25rem;
+        }
+
+        .intro-text {
+            font-size: 1.1rem;
+            max-width: 48rem;
+        }
+
+        .flex-grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 720px) {
+            .flex-grid.two {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .flex-grid.three {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 1.75rem;
+            border-radius: 18px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .card h3 {
+            margin: 0;
+            font-size: 1.25rem;
+        }
+
+        .card p {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        .highlight {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+            color: var(--accent-dark);
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 999px;
+            padding: 0.5rem 1rem;
+            font-size: 0.95rem;
+            display: inline-block;
+            margin-top: 0.75rem;
+        }
+
+        .sjiitdex-grid {
+            display: grid;
+            gap: 1.25rem;
+        }
+
+        @media (min-width: 560px) {
+            .sjiitdex-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (min-width: 900px) {
+            .sjiitdex-grid {
+                grid-template-columns: repeat(4, minmax(0, 1fr));
+            }
+        }
+
+        .dex-card {
+            aspect-ratio: 86 / 54;
+            border-radius: 18px;
+            padding: 1rem;
+            background: radial-gradient(circle at 20% 20%, rgba(255, 204, 77, 0.18), rgba(26, 93, 104, 0.95));
+            color: var(--accent);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+            position: relative;
+        }
+
+        .dex-card::after {
+            content: "";
+            position: absolute;
+            inset: 12px;
+            border: 2px dashed rgba(255, 204, 77, 0.45);
+            border-radius: 14px;
+        }
+
+        .dex-id {
+            font-weight: 700;
+            font-size: 1.05rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .dex-name {
+            font-size: 1.35rem;
+            font-weight: 700;
+        }
+
+        .dex-season {
+            font-size: 0.95rem;
+            font-weight: 500;
+            opacity: 0.85;
+        }
+
+        .dex-placeholder {
+            font-size: 0.85rem;
+            opacity: 0.85;
+            color: #f7f4ef;
+        }
+
+        .creator {
+            display: grid;
+            gap: 1.5rem;
+            align-items: start;
+        }
+
+        .creator figure {
+            margin: 0;
+            background: var(--card-bg);
+            border-radius: 18px;
+            padding: 1.5rem;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .creator figcaption {
+            margin-top: 1rem;
+            color: var(--muted);
+        }
+
+        .social-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            padding: 0.6rem 1.1rem;
+            border-radius: 999px;
+            background: rgba(20, 69, 82, 0.9);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+            color: var(--text-color);
+            font-weight: 600;
+        }
+
+        .faq {
+            display: grid;
+            gap: 1rem;
+            max-width: 50rem;
+        }
+
+        .faq h3 {
+            margin-bottom: 0.35rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2.5rem 1.5rem 3rem;
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        @media (min-width: 880px) {
+            .creator {
+                grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="wrapper hero">
+            <div>
+                <span class="badge">Sjiits · Steffen Brandsborg</span>
+                <h1>Tiny 3D printed Sjiits that travel from friend to friend</h1>
+                <p>You found a Sjiit because someone wanted to make you laugh and hand you a wonderfully weird little surprise. Keep the joke alive by saving it for your collection or passing it on to the next lucky finder.</p>
+                <a class="cta" href="#sjiitdex">Jump to the Sjiitdex →</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="about">
+            <div class="wrapper">
+                <h2>What exactly is a Sjiit?</h2>
+                <p class="intro-text">Sjiits are tiny 3D printed poop pranks a little over a centimeter tall. They’re planted in bags, on shelves, or wherever a playful friend thinks you’ll discover them. Numbers live in the Sjiitdex and on the accompanying card art (not the model itself), so every laugh becomes part of an ongoing story.</p>
+                <div class="flex-grid two" style="margin-top: 2.5rem;">
+                    <div class="card">
+                        <h3>Limited editions</h3>
+                        <p>Seasonal drops keep the hunt fresh. From holidays to special events, new Sjiits arrive with their own numbered card art you can track here.</p>
+                        <span class="highlight">001 · First Dump</span>
+                        <span class="highlight">002 · Moonshine Hex (Halloween 2025)</span>
+                    </div>
+                    <div class="card">
+                        <h3>Share the laughs</h3>
+                        <p>Keep your Sjiit or set it free. Many collectors hold on to the first of each type and let any extra copies roam. Tag <strong>@Yding3DPrint</strong> on Instagram or Facebook so we can reshare the weird little adventures and the curious spots where they appear.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="how-it-works">
+            <div class="wrapper">
+                <h2>How the Sjiit adventure works</h2>
+                <div class="flex-grid three">
+                    <div class="card">
+                        <h3>1. Find</h3>
+                        <p>Spot the little poop. It might be hiding in a backpack, perched on a shelf, or waiting on your desk. It’s all meant in good fun.</p>
+                    </div>
+                    <div class="card">
+                        <h3>2. Log it</h3>
+                        <p>Check its entry in the Sjiitdex and note the number shown on the card design. Snap a pic and share it with the world.</p>
+                    </div>
+                    <div class="card">
+                        <h3>3. Pass it on</h3>
+                        <p>Hide a Sjiit for the next person. Each drop keeps the mischief rolling and adds another chapter to the Sjiit saga.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="sjiitdex">
+            <div class="wrapper">
+                <h2>Sjiitdex</h2>
+                <p class="intro-text">Think Pokédex vibes, but for Sjiits. Each release comes with a credit card sized design inspired by the print you found. Browse the early cards below—more will appear as new weirdos join the lineup, and you can keep track of the ones you’ve discovered right here.</p>
+                <div class="sjiitdex-grid" style="margin-top: 2rem;">
+                    <article class="dex-card">
+                        <div class="dex-id">#001</div>
+                        <div class="dex-name">First Dump</div>
+                        <div class="dex-season">The OG</div>
+                        <div class="dex-placeholder">The very first Sjiit ever printed. Classic brown mischief in miniature form.</div>
+                    </article>
+                    <article class="dex-card">
+                        <div class="dex-id">#002</div>
+                        <div class="dex-name">Moonshine Hex</div>
+                        <div class="dex-season">Halloween 2025</div>
+                        <div class="dex-placeholder">A moonlit prank brewed for spooky season. Expect autumn vibes and trickster energy.</div>
+                    </article>
+                    <article class="dex-card">
+                        <div class="dex-id">#003</div>
+                        <div class="dex-name">???</div>
+                        <div class="dex-season">Coming soon…</div>
+                        <div class="dex-placeholder">Already in the works. Keep an eye out for teasers on socials.</div>
+                    </article>
+                    <article class="dex-card">
+                        <div class="dex-id">#004</div>
+                        <div class="dex-name">???</div>
+                        <div class="dex-season">Coming soon…</div>
+                        <div class="dex-placeholder">Got ideas for future drops? Tell us online and we might craft your dream Sjiit.</div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="creator">
+            <div class="wrapper creator">
+                <div>
+                    <h2>Meet the maker</h2>
+                    <p class="intro-text">Sjiits are dreamed up by <strong>Steffen Brandsborg</strong>. Through his Danish hobby venture Yding3DPrint, Steffen mixes 3D printing nerdery with a love for oddball experiences that brighten everyday life.</p>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/yding3dprint/" target="_blank" rel="noopener">Instagram · Yding3DPrint</a>
+                        <a href="https://yding3dprint.dk/" target="_blank" rel="noopener">Website · Yding3DPrint</a>
+                        <a href="https://www.facebook.com/profile.php?id=61581885161076" target="_blank" rel="noopener">Facebook · Yding3DPrint</a>
+                        <a href="https://makerworld.com/en/@SBrandsborg" target="_blank" rel="noopener">Makerworld · Yding3DPrint</a>
+                        <a href="https://www.linkedin.com/in/brandsborg/" target="_blank" rel="noopener">LinkedIn · Steffen Brandsborg</a>
+                    </div>
+                </div>
+                <figure>
+                    <h3>A community of giggles</h3>
+                    <p>Sjiits are about delighting someone for a split second—then letting the story keep travelling. Each pass adds another grin to the map, and now you’re part of it.</p>
+                    <figcaption>Share your discoveries with <strong>#sjiits</strong> and tag <strong>@Yding3DPrint</strong> so we can amplify the fun and spotlight the unexpected hiding places.</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <section id="faq">
+            <div class="wrapper">
+                <h2>Frequently asked questions</h2>
+                <div class="faq">
+                    <div>
+                        <h3>Should I keep or pass on my Sjiit?</h3>
+                        <p>Totally your call. Lots of people keep the first Sjiit of each type as a trophy and let the rest roam. That way you can track the tale while helping the mischief spread.</p>
+                    </div>
+                    <div>
+                        <h3>Are more designs coming?</h3>
+                        <p>Absolutely. New limited editions drop around holidays and special events. Follow Yding3DPrint to be first in line for fresh prints.</p>
+                    </div>
+                    <div>
+                        <h3>How do I get more Sjiits?</h3>
+                        <p>Watch social announcements and the Makerworld profile for drops. You can reach out to Steffen if you want to join the prank wave, or even print them yourself or team up with someone who can. You can’t sell Sjiits without a license, and even with one we keep the price low, around €0.50 each, so they stay an accessible prank.</p>
+                    </div>
+                    <div>
+                        <h3>Where do I find printing details?</h3>
+                        <p>Every card on Makerworld includes the print recipes. Please stick to the recommended touches like glittery or glow in the dark filament so the more intricate designs feel special while the simple ones stay common. I can’t dictate which Sjiits end up common, rare, epic, or mythical because that should flow naturally from the build complexity. It’s not meant to lock anyone out, just to add an extra collecting dimension.</p>
+                    </div>
+                    <div>
+                        <h3>Why isn’t there a number on the model?</h3>
+                        <p>Printing crisp digits on something this tiny would make it harder for everyone to take part. Instead, the numbering lives on the Sjiitdex and the matching card artwork, so you can still log every find without complicating the print.</p>
+                    </div>
+                    <div>
+                        <h3>Is this a business?</h3>
+                        <p>Sjiits exist to spread joy, not to chase profit. Any surplus has previously supported the local church’s Christmas aid for families in need along with other community initiatives, and it’s important to keep that spirit alive.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="wrapper">
+            <p>© <span id="year"></span> Sjiits · Crafted by Yding3DPrint / Steffen Brandsborg. Keep the laughs rolling.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
