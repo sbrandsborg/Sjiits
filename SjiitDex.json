@@ -15,6 +15,22 @@
       "rarity": "Limited",
       "season": "Halloween 2025",
       "emoji": "🌕🎃"
+    },
+    {
+      "id": "003",
+      "name": "Yule Log",
+      "description": "Christmas 2025 edition. Cozy holiday mischief with a warm seasonal glow.",
+      "rarity": "Limited",
+      "season": "Christmas 2025",
+      "emoji": "🎄🪵"
+    },
+    {
+      "id": "004",
+      "name": "Detonated Number Two",
+      "description": "New Year 2025 edition. Explosive celebration to ring in the year with a bang.",
+      "rarity": "Limited",
+      "season": "New Year 2025",
+      "emoji": "🎆💥"
     }
   ]
 }
